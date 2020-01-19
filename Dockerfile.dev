@@ -1,0 +1,12 @@
+FROM node:alpine
+
+WORKDIR /var/app
+
+COPY package.json .
+RUN npm install
+
+#docker-compose handles volume bookmark making copy unnecessay WHEN USING DOCKER-COMPOSE
+#Still need copy when simply building image from dockerfile
+COPY . .
+
+CMD ["npm", "start"]
